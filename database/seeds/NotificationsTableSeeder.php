@@ -16,10 +16,10 @@ class NotificationsTableSeeder extends Seeder
         DB::table('notifications')->truncate();
         $faker = Faker::create();
 
-        foreach (range(1,10) as $index) {
+        for ($i = 0; $i <= 3; $i++) {
             DB::table('notifications')->insert([
                 'from' => $faker->name,
-                'message' => $faker->paragraph,
+                'message' => $faker->words(10, true),
             ]);
         }
     }
