@@ -10,10 +10,7 @@ class NotificationController extends Controller
 
     public function get()
     {
-        $notifications = Notification::take(5)
-                            ->orderBy('created_at','desc')
-                            ->orderBy('id','desc')
-                            ->get();
+        $notifications = Notification::take(3)->get();
 
         return response()->json($notifications);
     }

@@ -1405,28 +1405,30 @@ Vue.component('notification-composer', __webpack_require__(52));
 var app = new Vue({
     el: '#app',
     data: {
-        messages: [{
-            message: 'Hey!',
-            user: "John Doe"
-        }, {
-            message: 'Hello!',
-            user: "Jane Doe"
-        }]
+        messages: []
     },
     methods: {
         addMessage: function addMessage(message) {
-            // Add to existing messages
             this.messages.push(message);
-            // Persist to the database etc
+            axios.post('/api/notifications', message);
         }
-    }
+    },
+    created: function created() {
+        var _this = this;
 
+        axios.get('/api/notifications').then(function (response) {
+            _this.messages = response.data;
+        });
+    }
 });
 
 /***/ }),
 /* 14 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+throw new Error("Cannot find module \"laravel-echo\"");
 
 window._ = __webpack_require__(15);
 
@@ -1472,7 +1474,7 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
+
 
 // window.Pusher = require('pusher-js');
 
@@ -43223,7 +43225,7 @@ var render = function() {
   return _c("div", { staticClass: "notification-message" }, [
     _c("p", [_vm._v(_vm._s(_vm.message.message))]),
     _vm._v(" "),
-    _c("small", [_vm._v(_vm._s(_vm.message.user))])
+    _c("small", [_vm._v(_vm._s(_vm.message.from))])
   ])
 }
 var staticRenderFns = []
@@ -43491,7 +43493,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         sendMessage: function sendMessage() {
             this.$emit('messagesent', {
                 message: this.messageText,
-                user: "John Doe"
+                from: $('.navbar-right .dropdown-toggle').text()
             });
             this.messageText = '';
         }

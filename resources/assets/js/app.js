@@ -21,23 +21,18 @@ Vue.component('notification-composer', require('./components/NotificationCompose
 const app = new Vue({
     el: '#app',
     data: {
-        messages: [
-            {
-                message: 'Hey!',
-                user: "John Doe"
-            },
-            {
-                message: 'Hello!',
-                user: "Jane Doe"
-            }
-        ]
+        messages: []
     },
     methods: {
         addMessage(message) {
-            // Add to existing messages
             this.messages.push(message);
-            // Persist to the database etc
+            axios.post('/api/notifications', message);
         }
+    },
+    created() {
+        axios.get('/api/notifications').then(response => {
+            this.messages = response.data;
+        });
     }
 
 });

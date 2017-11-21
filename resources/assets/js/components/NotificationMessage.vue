@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="notification-message">
     <p>{{ message.message }}</p>
-    <small>{{ message.user }}</small>
+    <small>{{ message.from }}</small>
   </div>
 </template>
 
