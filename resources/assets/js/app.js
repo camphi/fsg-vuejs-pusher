@@ -14,9 +14,30 @@ window.Vue = require('vue');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-Vue.component('example', require('./components/Example.vue'));
+Vue.component('notification-message', require('./components/NotificationMessage.vue'));
+Vue.component('notification-log', require('./components/NotificationLog.vue'));
+Vue.component('notification-composer', require('./components/NotificationComposer.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        messages: [
+            {
+                message: 'Hey!',
+                user: "John Doe"
+            },
+            {
+                message: 'Hello!',
+                user: "Jane Doe"
+            }
+        ]
+    },
+    methods: {
+        addMessage(message) {
+            // Add to existing messages
+            this.messages.push(message);
+            // Persist to the database etc
+        }
+    }
+
 });

@@ -19,5 +19,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/chat', 'HomeController@chat')->name('chat');
 Route::get('/notifications', 'NotificationController@get')->name('notifications.get');
 Route::post('/notifications', 'NotificationController@store')->name('notifications.store');

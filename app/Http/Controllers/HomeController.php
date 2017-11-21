@@ -27,4 +27,14 @@ class HomeController extends Controller
         return view('home');
     }
 
+    /**
+     * Chat page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function chat()
+    {
+        return view('chat');
+    }
+
 }
