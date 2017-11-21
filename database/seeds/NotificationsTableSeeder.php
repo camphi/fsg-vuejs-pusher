@@ -13,7 +13,7 @@ class NotificationsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('songs')->truncate();
+        DB::table('notifications')->truncate();
         $faker = Faker::create();
 
         foreach (range(1,10) as $index) {
@@ -22,6 +22,5 @@ class NotificationsTableSeeder extends Seeder
                 'message' => $faker->paragraph,
             ]);
         }
-
     }
 }
