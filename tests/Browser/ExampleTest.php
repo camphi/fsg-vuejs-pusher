@@ -21,4 +21,29 @@ class ExampleTest extends DuskTestCase
         });
     }
 
+    public function testSendNotification()
+    {
+        $user1 = factory(User::class)->create([
+            'name' => 'Michael Villeneuve'
+        ]);
+
+        $user2 = factory(User::class)->create([
+            'name' => 'Steven Rosato'
+        ]);
+
+        $this->browse(function ($first, $second) use($user1, $user2) {
+            $first->loginAs($user1)
+                ->visit('/notifications')
+                ->waitFor('.notifications-composer');
+
+            $second->loginAs($user2)
+                ->visit('/notifications')
+                ->waitFor('.chat-composer')
+                ->type('#message', 'Hey Steven')
+                ->press('Send');
+
+            $first->waitForText('Hey Steven')
+                ->assertSee('Jane Doe');
+        });
+    }
 }
