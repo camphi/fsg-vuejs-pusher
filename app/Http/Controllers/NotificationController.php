@@ -23,6 +23,5 @@ class NotificationController extends Controller
         $notification = new Notification();
         $notification->fill($request->all());
         $notification->save();
-        
     }
 }
