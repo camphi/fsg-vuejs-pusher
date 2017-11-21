@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/notifications', 'NotificationController@get')->name('notifications.get');
+Route::post('/notifications', 'NotificationController@store')->name('notifications.store');
